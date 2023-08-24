@@ -7,6 +7,7 @@ entity toplevel is
         fpga_clk_50   : in  std_logic;        
 
         -- I/Os
+		  stepmotor_start : in  std_logic;
         stepmotor_en  : in  std_logic;
         stepmotor_dir : in  std_logic;
 		  stepmotor_vel : in  std_logic_vector(1 downto 0);
@@ -22,6 +23,7 @@ component stepmotor is
         clk   : in  std_logic;
 
         -- controls
+		  start   : in std_logic; 
         en      : in std_logic;                     -- 1 on/ 0 of
         dir     : in std_logic;                     -- 1 clock wise
         vel     : in std_logic_vector(1 downto 0);  -- 00: low / 11: fast
@@ -33,6 +35,6 @@ end component;
   
 begin
 
-u1 : stepmotor port map (fpga_clk_50, stepmotor_en, stepmotor_dir, stepmotor_vel, stepmotor_pio);
+u1 : stepmotor port map (fpga_clk_50, stepmotor_start, stepmotor_en, stepmotor_dir, stepmotor_vel, stepmotor_pio);
 
 end rtl;
